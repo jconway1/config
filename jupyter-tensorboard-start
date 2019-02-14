@@ -19,7 +19,7 @@ c.NotebookApp.quit_button = False
 EOF
 
 # Replace * in "--ip=*" with the actual IP address of the container
-COMMAND='jupyter notebook --no-browser --ip=* 2>&1'
+COMMAND='xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" -- jupyter notebook --no-browser --ip=* 2>&1'
 FINAL_COMMAND=$(echo "${COMMAND}" | sed "s/--ip=\\*/--ip=${IP_ADDR}/")
 
 eval ${FINAL_COMMAND}
